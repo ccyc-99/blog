@@ -15,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "思维漫游 | 个人博客",
-  description: "用文字记录思考，分享技术、生活与成长。",
+  title: {
+    default: "思维漫游 | 个人博客",
+    template: "%s | 思维漫游",
+  },
+  description: "用文字记录思考，分享技术、生活与成长。每一个想法，都值得被书写。",
 };
 
 export default function RootLayout({
@@ -29,7 +32,7 @@ export default function RootLayout({
       lang="zh-CN"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-gray-50">
+      <body className="min-h-full flex flex-col bg-gray-50/50">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
