@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Code highlighting theme */
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0;
+}
+
+.hljs {
+  color: #e1e4e8;
+  background: transparent;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type { color: #f97583; }
+.hljs-string,
+.hljs-addition { color: #9ecbff; }
+.hljs-comment,
+.hljs-quote { color: #6a737d; }
+.hljs-number,
+.hljs-literal { color: #79b8ff; }
+.hljs-attr,
+.hljs-variable { color: #79b8ff; }
+.hljs-title,
+.hljs-section { color: #b392f0; }
+.hljs-built_in,
+.hljs-builtin-name { color: #f97583; }
+.hljs-meta { color: #6a737d; }
+.hljs-deletion { color: #fdaeb7; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }
