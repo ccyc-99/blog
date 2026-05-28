@@ -5,6 +5,9 @@
 @theme {
   --font-sans: "Inter", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-accent: #06b6d4;
 }
 
 body {
@@ -13,7 +16,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Code highlighting theme */
+/* Hero gradient background */
+.hero-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Card hover lift effect */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Code highlighting theme - Monokai inspired */
 pre code.hljs {
   display: block;
   overflow-x: auto;
@@ -27,20 +44,48 @@ pre code.hljs {
 
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-type { color: #f97583; }
+.hljs-type { color: #ff79c6; }
 .hljs-string,
-.hljs-addition { color: #9ecbff; }
+.hljs-addition { color: #50fa7b; }
 .hljs-comment,
-.hljs-quote { color: #6a737d; }
+.hljs-quote { color: #6272a4; font-style: italic; }
 .hljs-number,
-.hljs-literal { color: #79b8ff; }
+.hljs-literal { color: #bd93f9; }
 .hljs-attr,
-.hljs-variable { color: #79b8ff; }
+.hljs-variable,
+.hljs-template-variable { color: #8be9fd; }
 .hljs-title,
-.hljs-section { color: #b392f0; }
+.hljs-section,
+.hljs-name { color: #50fa7b; }
 .hljs-built_in,
-.hljs-builtin-name { color: #f97583; }
-.hljs-meta { color: #6a737d; }
-.hljs-deletion { color: #fdaeb7; }
+.hljs-builtin-name { color: #ffb86c; }
+.hljs-meta { color: #6272a4; }
+.hljs-deletion { color: #ff5555; }
 .hljs-emphasis { font-style: italic; }
 .hljs-strong { font-weight: bold; }
+.hljs-params { color: #f8f8f2; }
+.hljs-attribute { color: #50fa7b; }
+.hljs-tag { color: #ff79c6; }
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animated underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
