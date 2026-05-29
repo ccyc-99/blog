@@ -93,3 +93,16 @@ export function getPostsByTag(tag: string): PostMeta[] {
   const posts = getAllPosts();
   return posts.filter((post) => post.tags.includes(tag));
 }
+
+export function searchPosts(query: string): PostMeta[] {
+  const posts = getAllPosts();
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+
+  return posts.filter(
+    (p) =>
+      p.title.toLowerCase().includes(q) ||
+      p.excerpt.toLowerCase().includes(q) ||
+      p.tags.some((t) => t.toLowerCase().includes(q))
+  );
+}
