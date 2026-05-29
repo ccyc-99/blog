@@ -1,5 +1,7 @@
 import { getAllPosts } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
+import Clock from '@/components/Clock';
+import VisitorCounter from '@/components/VisitorCounter';
 import Link from 'next/link';
 
 // 领域分类映射
@@ -168,6 +170,12 @@ export default function Home() {
               </svg>
               <span className="text-gray-600 font-medium">{categories.length} 大领域</span>
             </div>
+          </div>
+
+          {/* Time & Visitor Row */}
+          <div className="animate-fade-in-up-delay-4 flex flex-wrap items-center justify-center gap-3 mt-4">
+            <Clock />
+            <VisitorCounter />
           </div>
 
           {/* Scroll hint */}
