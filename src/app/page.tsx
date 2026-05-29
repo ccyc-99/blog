@@ -126,8 +126,8 @@ export default function Home() {
           </div>
 
           {/* Spinning Random Title */}
-          <div className="animate-fade-in-up-delay-1 mb-8">
-            <SpinningTitle posts={allPosts.map((p) => ({ slug: p.slug, title: p.title }))} />
+          <div className="animate-fade-in-up-delay-1 mb-6">
+            <SpinningTitle posts={allPosts.map((p) => ({ slug: p.slug, title: p.title, tag: p.tags[0] }))} />
           </div>
 
           {/* Main heading */}
