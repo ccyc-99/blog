@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense, useCallback } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import PostCard from '@/components/PostCard';
 import { loadSearchIndex, searchPostsLocal, type SearchPost } from '@/lib/search-client';
@@ -36,11 +36,11 @@ function SearchContent() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12 md:py-16">
       <div className="mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">搜索文章</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-200 mb-3 tracking-tight">搜索文章</h1>
         <p className="text-gray-500 mb-6">按标题、摘要或标签搜索你感兴趣的内容。</p>
 
         <form onSubmit={handleSubmit} className="relative max-w-xl">
-          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input
@@ -48,7 +48,7 @@ function SearchContent() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="输入关键词搜索..."
-            className="w-full pl-12 pr-24 py-3 text-sm bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400/30 focus:border-indigo-300 focus:bg-white transition-all duration-200 shadow-sm"
+            className="w-full pl-12 pr-24 py-3 text-sm bg-[#0f0f23]/70 backdrop-blur-sm border border-indigo-500/15 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400/30 focus:border-indigo-400/40 focus:bg-[#151530] transition-all duration-200 shadow-sm text-gray-200 placeholder:text-gray-600"
           />
           <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-indigo-500 to-violet-500 rounded-lg hover:from-indigo-600 hover:to-violet-600 transition-all duration-200 shadow-sm">
             搜索
@@ -60,17 +60,17 @@ function SearchContent() {
         <>
           <div className="flex items-center justify-between mb-6">
             <p className="text-sm text-gray-500">
-              搜索 &ldquo;<span className="font-medium text-gray-700">{activeQuery}</span>&rdquo;，
-              找到 <span className="font-semibold text-indigo-600">{results.length}</span> 篇文章
+              搜索 &ldquo;<span className="font-medium text-gray-300">{activeQuery}</span>&rdquo;，
+              找到 <span className="font-semibold text-indigo-400">{results.length}</span> 篇文章
             </p>
           </div>
           {results.length === 0 ? (
             <div className="text-center py-16">
-              <svg className="w-16 h-16 text-gray-200 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-16 h-16 text-gray-700 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-gray-400 mb-2">没有找到匹配的文章</p>
-              <p className="text-sm text-gray-300">试试其他关键词</p>
+              <p className="text-gray-500 mb-2">没有找到匹配的文章</p>
+              <p className="text-sm text-gray-600">试试其他关键词</p>
             </div>
           ) : (
             <div className="grid gap-4">
@@ -82,10 +82,10 @@ function SearchContent() {
         </>
       ) : (
         <div className="text-center py-16">
-          <svg className="w-16 h-16 text-gray-200 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-16 h-16 text-gray-700 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <p className="text-gray-400">输入关键词开始搜索</p>
+          <p className="text-gray-500">输入关键词开始搜索</p>
         </div>
       )}
     </div>

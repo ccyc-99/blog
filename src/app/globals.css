@@ -6,68 +6,110 @@
   --font-sans: "Inter", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 
-  /* Refined color palette - warmer indigo with violet undertones */
-  --color-brand: #5b5ef7;
-  --color-brand-light: #818cf8;
-  --color-brand-dark: #4f46e5;
-  --color-brand-soft: #eef2ff;
-  --color-warm-bg: #faf9f7;
-  --color-surface: #ffffff;
-  --color-ink: #1e1e2e;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --color-border-light: #f3f4f6;
+  --color-brand: #818cf8;
+  --color-brand-light: #a78bfa;
+  --color-brand-dark: #6366f1;
+  --color-brand-soft: #1e1b4b;
+  --color-warm-bg: #0a0a1a;
+  --color-surface: #0f0f23;
+  --color-ink: #e2e8f0;
+  --color-muted: #94a3b8;
+  --color-border: #1e293b;
+  --color-border-light: #334155;
 }
 
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(180deg, #faf9f7 0%, #f5f3ff 50%, #faf9f7 100%);
+  background: #0a0a1a;
   min-height: 100vh;
+  color: #e2e8f0;
 }
 
-/* ========== Subtle ambient texture overlay ========== */
+/* ========== Sci-Fi Grid Background ========== */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.04), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(139, 92, 246, 0.03), transparent);
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
+
+/* ========== Sci-Fi Glow + Particles ========== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    /* Top glow */
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(99, 102, 241, 0.12), transparent 60%),
+    /* Bottom-right glow */
+    radial-gradient(ellipse 50% 50% at 80% 100%, rgba(139, 92, 246, 0.08), transparent 60%),
+    /* Floating particles */
+    radial-gradient(1px 1px at 10% 20%, rgba(129, 140, 248, 0.6), transparent),
+    radial-gradient(1px 1px at 25% 45%, rgba(167, 139, 250, 0.5), transparent),
+    radial-gradient(1px 1px at 40% 15%, rgba(99, 102, 241, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 55% 60%, rgba(192, 132, 252, 0.6), transparent),
+    radial-gradient(1px 1px at 70% 30%, rgba(129, 140, 248, 0.5), transparent),
+    radial-gradient(1px 1px at 85% 55%, rgba(167, 139, 250, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 15% 75%, rgba(99, 102, 241, 0.5), transparent),
+    radial-gradient(1px 1px at 60% 85%, rgba(192, 132, 252, 0.4), transparent),
+    radial-gradient(1px 1px at 90% 15%, rgba(129, 140, 248, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 35% 80%, rgba(167, 139, 250, 0.4), transparent);
+}
+
+/* ========== Animated star particles ========== */
+@keyframes starFloat1 {
+  0%, 100% { opacity: 0.3; transform: translateY(0) scale(1); }
+  50% { opacity: 0.8; transform: translateY(-6px) scale(1.4); }
+}
+@keyframes starFloat2 {
+  0%, 100% { opacity: 0.4; transform: translateY(0) scale(1); }
+  50% { opacity: 0.9; transform: translateY(6px) scale(1.3); }
+}
+@keyframes starFloat3 {
+  0%, 100% { opacity: 0.2; transform: translateX(0) scale(1); }
+  50% { opacity: 0.7; transform: translateX(4px) scale(1.5); }
+}
+
+.sci-fi-particle-1 { animation: starFloat1 4s ease-in-out infinite; }
+.sci-fi-particle-2 { animation: starFloat2 5s ease-in-out infinite; }
+.sci-fi-particle-3 { animation: starFloat3 3.5s ease-in-out infinite; }
 
 /* ========== Smooth scroll ========== */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* ========== Glass card effect ========== */
+/* ========== Glass card effect (dark sci-fi) ========== */
 .glass-card {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(15, 15, 35, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.12);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.03);
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(99, 102, 241, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(20, 20, 50, 0.88);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 8px 32px rgba(0, 0, 0, 0.06);
-  border-color: rgba(129, 140, 248, 0.25);
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(99, 102, 241, 0.12);
+  border-color: rgba(129, 140, 248, 0.35);
   transform: translateY(-2px);
 }
 
 /* ========== Gradient text utility ========== */
 .text-gradient {
-  background: linear-gradient(135deg, #5b5ef7 0%, #a78bfa 50%, #f472b6 100%);
+  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -86,20 +128,11 @@ html {
 
 /* ========== Fade-in-up entrance ========== */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
+.animate-fade-in-up { animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 .animate-fade-in-up-delay-1 { animation-delay: 0.1s; opacity: 0; }
 .animate-fade-in-up-delay-2 { animation-delay: 0.2s; opacity: 0; }
 .animate-fade-in-up-delay-3 { animation-delay: 0.3s; opacity: 0; }
@@ -107,9 +140,7 @@ html {
 .animate-fade-in-up-delay-5 { animation-delay: 0.5s; opacity: 0; }
 
 /* ========== Nav link underline animation ========== */
-.nav-link {
-  position: relative;
-}
+.nav-link { position: relative; }
 .nav-link::after {
   content: '';
   position: absolute;
@@ -119,12 +150,10 @@ html {
   width: 0;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #5b5ef7, #a78bfa);
+  background: linear-gradient(90deg, #818cf8, #a78bfa);
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.nav-link:hover::after {
-  width: 80%;
-}
+.nav-link:hover::after { width: 80%; }
 
 /* ========== Shimmer effect for skeleton ========== */
 @keyframes shimmer {
@@ -133,105 +162,48 @@ html {
 }
 
 .shimmer {
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
-/* ========== Code highlighting - Refined Dracula inspired ========== */
-pre {
-  position: relative;
-}
-
+/* ========== Code highlighting ========== */
+pre { position: relative; }
 pre::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
 }
-
-pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0;
-}
-
-.hljs {
-  color: #e1e4e8;
-  background: transparent;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-type { color: #ff79c6; }
-
-.hljs-string,
-.hljs-addition { color: #50fa7b; }
-
-.hljs-comment,
-.hljs-quote { color: #6272a4; font-style: italic; }
-
-.hljs-number,
-.hljs-literal { color: #bd93f9; }
-
-.hljs-attr,
-.hljs-variable,
-.hljs-template-variable { color: #8be9fd; }
-
-.hljs-title,
-.hljs-section,
-.hljs-name { color: #50fa7b; }
-
-.hljs-built_in,
-.hljs-builtin-name { color: #ffb86c; }
-
+pre code.hljs { display: block; overflow-x: auto; padding: 0; }
+.hljs { color: #e1e4e8; background: transparent; }
+.hljs-keyword, .hljs-selector-tag, .hljs-type { color: #ff79c6; }
+.hljs-string, .hljs-addition { color: #50fa7b; }
+.hljs-comment, .hljs-quote { color: #6272a4; font-style: italic; }
+.hljs-number, .hljs-literal { color: #bd93f9; }
+.hljs-attr, .hljs-variable, .hljs-template-variable { color: #8be9fd; }
+.hljs-title, .hljs-section, .hljs-name { color: #50fa7b; }
+.hljs-built_in, .hljs-builtin-name { color: #ffb86c; }
 .hljs-meta { color: #6272a4; }
-
 .hljs-deletion { color: #ff5555; }
-
 .hljs-emphasis { font-style: italic; }
-
 .hljs-strong { font-weight: bold; }
-
 .hljs-params { color: #f8f8f2; }
-
 .hljs-attribute { color: #50fa7b; }
-
 .hljs-tag { color: #ff79c6; }
 
 /* ========== Selection style ========== */
-::selection {
-  background: rgba(99, 102, 241, 0.2);
-  color: #1e1e2e;
-}
+::selection { background: rgba(129, 140, 248, 0.3); color: #e2e8f0; }
 
 /* ========== Scrollbar styling ========== */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(10, 10, 26, 0.5); }
+::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(129, 140, 248, 0.5); }
 
 /* ========== Focus ring ========== */
-*:focus-visible {
-  outline: 2px solid #818cf8;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
+*:focus-visible { outline: 2px solid #818cf8; outline-offset: 2px; border-radius: 4px; }
 
 /* ========== Reduced motion ========== */
 @media (prefers-reduced-motion: reduce) {

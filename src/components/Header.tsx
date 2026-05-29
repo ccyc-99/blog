@@ -24,7 +24,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -32,17 +31,13 @@ export default function Header() {
         setSearchOpen(true);
         setTimeout(() => searchRef.current?.focus(), 100);
       }
-      if (e.key === 'Escape') {
-        setSearchOpen(false);
-      }
+      if (e.key === 'Escape') setSearchOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,27 +53,20 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/85 backdrop-blur-xl shadow-sm border-b border-gray-100/60'
+          ? 'bg-[#0a0a1a]/85 backdrop-blur-xl shadow-sm border-b border-indigo-500/10'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 group flex-shrink-0"
-        >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:shadow-lg group-hover:shadow-indigo-500/30 group-hover:scale-105 transition-all duration-300">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:shadow-lg group-hover:shadow-indigo-500/30 group-hover:scale-105 transition-all duration-300">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </div>
-          <span className="text-xl font-bold text-gradient hidden sm:block">
-            思维漫游
-          </span>
+          <span className="text-lg font-bold text-gradient hidden sm:block">思维漫游</span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden sm:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
@@ -86,10 +74,10 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`relative px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? 'text-indigo-600 bg-indigo-50/80'
-                    : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'
+                    ? 'text-indigo-400 bg-indigo-500/10'
+                    : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
                 }`}
               >
                 <span className="flex items-center gap-1.5">
@@ -99,39 +87,27 @@ export default function Header() {
                   {item.label}
                 </span>
                 {isActive && (
-                  <span className="absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-indigo-400" />
+                  <span className="absolute bottom-0.5 left-3 right-3 h-0.5 rounded-full bg-indigo-400" />
                 )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Clock + Search + Mobile toggle */}
         <div className="flex items-center gap-1">
-          {/* Clock */}
-          <div className="hidden lg:block">
-            <Clock />
-          </div>
-
-          {/* Search button */}
+          <div className="hidden lg:block"><Clock /></div>
           <button
-            onClick={() => {
-              setSearchOpen(true);
-              setTimeout(() => searchRef.current?.focus(), 100);
-            }}
-            className="p-2 rounded-xl text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all duration-200"
+            onClick={() => { setSearchOpen(true); setTimeout(() => searchRef.current?.focus(), 100); }}
+            className="p-2 rounded-lg text-gray-400 hover:text-gray-200 hover:bg-white/5 transition-all duration-200"
             aria-label="搜索文章"
-            title="搜索 (⌘K)"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </button>
-
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="sm:hidden p-2 rounded-xl text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all duration-200"
+            className="sm:hidden p-2 rounded-lg text-gray-400 hover:text-gray-200 hover:bg-white/5 transition-all duration-200"
             aria-label="Toggle menu"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,21 +123,10 @@ export default function Header() {
 
       {/* Search Overlay */}
       {searchOpen && (
-        <div
-          className="fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm"
-          onClick={() => setSearchOpen(false)}
-        >
-          <div
-            className="absolute top-24 left-1/2 -translate-x-1/2 w-full max-w-lg px-4"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm" onClick={() => setSearchOpen(false)}>
+          <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-lg px-4" onClick={(e) => e.stopPropagation()}>
             <form onSubmit={handleSearch} className="relative">
-              <svg
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input
@@ -169,24 +134,18 @@ export default function Header() {
                 type="text"
                 name="q"
                 placeholder="搜索文章..."
-                className="w-full pl-12 pr-12 py-3.5 text-sm bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400/30 focus:border-indigo-300 transition-all duration-200"
+                className="w-full pl-12 pr-12 py-3.5 text-sm bg-[#151530] text-gray-200 rounded-2xl shadow-2xl shadow-black/20 border border-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-400/30 focus:border-indigo-400/40 transition-all duration-200 placeholder:text-gray-500"
                 autoComplete="off"
               />
-              <kbd className="absolute right-4 top-1/2 -translate-y-1/2 inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-gray-400 bg-gray-100 rounded-md border border-gray-200">
-                ESC
-              </kbd>
+              <kbd className="absolute right-4 top-1/2 -translate-y-1/2 inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-medium text-gray-500 bg-white/5 rounded-md border border-white/10">ESC</kbd>
             </form>
           </div>
         </div>
       )}
 
       {/* Mobile Nav */}
-      <div
-        className={`sm:hidden overflow-hidden transition-all duration-300 ${
-          mobileOpen ? 'max-h-64 border-t border-gray-100' : 'max-h-0'
-        }`}
-      >
-        <div className="bg-white/90 backdrop-blur-xl px-4 py-3 space-y-1">
+      <div className={`sm:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? 'max-h-64 border-t border-indigo-500/10' : 'max-h-0'}`}>
+        <div className="bg-[#0a0a1a]/95 backdrop-blur-xl px-4 py-3 space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -195,9 +154,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  isActive
-                    ? 'bg-indigo-50 text-indigo-600'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  isActive ? 'bg-indigo-500/10 text-indigo-400' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200'
                 }`}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

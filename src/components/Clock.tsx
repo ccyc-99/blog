@@ -21,14 +21,12 @@ export default function Clock() {
   const weekday = weekdays[time.getDay()];
 
   return (
-    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm">
-      {/* Clock Icon */}
+    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#0f0f23]/70 backdrop-blur-sm border border-indigo-500/15 shadow-sm">
       <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
 
-      {/* Time display */}
-      <span className="text-sm font-mono font-semibold text-gray-700 tabular-nums tracking-wider">
+      <span className="text-sm font-mono font-semibold text-gray-200 tabular-nums tracking-wider">
         {hours}
         <span className="animate-pulse text-indigo-400 mx-px">:</span>
         {minutes}
@@ -36,13 +34,9 @@ export default function Clock() {
         {seconds}
       </span>
 
-      {/* Divider */}
-      <span className="w-px h-4 bg-gray-200" />
+      <span className="w-px h-4 bg-indigo-500/20" />
 
-      {/* Date */}
-      <span className="text-xs text-gray-400">
-        周{weekday}
-      </span>
+      <span className="text-xs text-gray-500">周{weekday}</span>
     </div>
   );
 }
