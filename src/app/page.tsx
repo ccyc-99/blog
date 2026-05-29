@@ -2,6 +2,7 @@ import { getAllPosts } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
 import Clock from '@/components/Clock';
 import VisitorCounter from '@/components/VisitorCounter';
+import SpinningTitle from '@/components/SpinningTitle';
 import Link from 'next/link';
 
 // 领域分类映射
@@ -116,12 +117,17 @@ export default function Home() {
 
         <div className="relative max-w-5xl mx-auto px-4 py-20 md:py-28 lg:py-32 text-center">
           {/* Status badge */}
-          <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm text-sm mb-8">
+          <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm text-sm mb-3">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             <span className="text-gray-600 font-medium">持续更新 · {allPosts.length} 篇文章</span>
+          </div>
+
+          {/* Spinning Random Title */}
+          <div className="animate-fade-in-up-delay-1 mb-8">
+            <SpinningTitle posts={allPosts.map((p) => ({ slug: p.slug, title: p.title }))} />
           </div>
 
           {/* Main heading */}
