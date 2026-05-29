@@ -7,8 +7,8 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-gray-100/80 mt-auto">
-      <div className="max-w-5xl mx-auto px-4 py-10">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="max-w-5xl mx-auto px-4 py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Brand */}
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 via-violet-500 to-purple-500 flex items-center justify-center shadow-sm shadow-indigo-500/20">
@@ -33,7 +33,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+        <div className="mt-5 pt-4 border-t border-gray-100 text-center">
           <p className="text-xs text-gray-400">
             © {new Date().getFullYear()} 思维漫游 — 用文字记录思考，让思考留下痕迹。
           </p>

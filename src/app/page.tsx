@@ -115,7 +115,7 @@ export default function Home() {
         <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-violet-200/30 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-100/20 rounded-full blur-3xl" />
 
-        <div className="relative max-w-5xl mx-auto px-4 py-20 md:py-28 lg:py-32 text-center">
+        <div className="relative max-w-5xl mx-auto px-4 py-14 md:py-18 lg:py-20 text-center">
           {/* Status badge */}
           <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm text-sm mb-3">
             <span className="relative flex h-2 w-2">
@@ -126,21 +126,21 @@ export default function Home() {
           </div>
 
           {/* Spinning Random Title */}
-          <div className="animate-fade-in-up-delay-1 mb-6">
+          <div className="animate-fade-in-up-delay-1 mb-4">
             <SpinningTitle posts={allPosts.map((p) => ({ slug: p.slug, title: p.title, tag: p.tags[0] }))} />
           </div>
 
           {/* Main heading */}
-          <h1 className="animate-fade-in-up-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-[1.1]">
+          <h1 className="animate-fade-in-up-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 tracking-tight leading-[1.1]">
             <span className="text-gradient">思维漫游</span>
           </h1>
 
-          <p className="animate-fade-in-up-delay-2 text-lg md:text-xl text-gray-500 max-w-xl mx-auto leading-relaxed mb-8">
+          <p className="animate-fade-in-up-delay-2 text-lg md:text-xl text-gray-500 max-w-xl mx-auto leading-relaxed mb-6">
             用文字记录思考，分享技术、生活与成长。
           </p>
 
           {/* Search Bar */}
-          <div className="animate-fade-in-up-delay-3 max-w-lg mx-auto mb-10">
+          <div className="animate-fade-in-up-delay-3 max-w-lg mx-auto mb-6">
             <form action="/search" method="GET" className="relative group">
               <svg
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-400 transition-colors"
@@ -195,7 +195,7 @@ export default function Home() {
       </section>
 
       {/* Category Navigation */}
-      <section className="relative z-10 max-w-5xl mx-auto px-4 pt-12 pb-4">
+      <section className="relative z-10 max-w-5xl mx-auto px-4 pt-8 pb-3">
         <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
           {categoriesWithPosts.map((cat) => (
             <a
@@ -220,19 +220,19 @@ export default function Home() {
       </section>
 
       {/* Category Sections */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 pb-16 space-y-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 pb-12 space-y-10">
         {categoriesWithPosts.map((cat) => (
           <section key={cat.slug} id={cat.slug}>
             {/* Section Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-md`}>
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-sm`}>
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={cat.icon} />
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-xl md:text-2xl font-bold text-gray-900">{cat.name}</h2>
+                  <h2 className="text-lg md:text-xl font-bold text-gray-900">{cat.name}</h2>
                   <p className="text-xs text-gray-400 mt-0.5">{cat.count} 篇文章</p>
                 </div>
               </div>
@@ -251,12 +251,12 @@ export default function Home() {
 
             {/* Posts Grid */}
             {cat.count === 0 ? (
-              <div className="text-center py-8 bg-white/40 rounded-2xl border border-gray-100">
+              <div className="text-center py-6 bg-white/40 rounded-xl border border-gray-100">
                 <p className="text-gray-400 text-sm">暂无该分类文章</p>
               </div>
             ) : (
-              <div className="grid sm:grid-cols-2 gap-4">
-                {cat.posts.slice(0, 6).map((post) => (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {cat.posts.slice(0, 9).map((post) => (
                   <PostCard key={post.slug} post={post} compact />
                 ))}
               </div>
@@ -266,17 +266,17 @@ export default function Home() {
       </div>
 
       {/* Recent Updates */}
-      <section className="relative z-10 max-w-5xl mx-auto px-4 pb-16">
-        <div className="flex items-center justify-between mb-6">
+      <section className="relative z-10 max-w-5xl mx-auto px-4 pb-12">
+        <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+            <h2 className="text-lg md:text-xl font-bold text-gray-900 tracking-tight">
               最近更新
             </h2>
-            <p className="text-gray-400 text-sm mt-1">最新发布的文章</p>
+            <p className="text-gray-400 text-xs mt-0.5">最新发布的文章</p>
           </div>
           <Link
             href="/tags"
-            className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-all duration-200"
+            className="group inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-all duration-200"
           >
             浏览标签
             <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -284,7 +284,7 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {recentPosts.map((post) => (
             <PostCard key={post.slug} post={post} compact />
           ))}
